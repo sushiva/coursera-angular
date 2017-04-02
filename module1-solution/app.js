@@ -1,23 +1,25 @@
-(function () {
-'use strict';
+(function() {
+    'use strict';
+    angular.module('LunchCheck', [])
+        .controller('LunchCheckController', LunchCheckController);
+    LunchCheckController.$inject = ['$scope'];
 
-angular.module('LunchCheckApp', [])
-.controller('LunchCheckController', LunchCheckController);
-LunchCheckController.$inject = ['$scope'];
-
-function LunchCheckController($scope) {
-$scope.message = "";
-$scope.lunchItems = "";
-$scope.checkIfTooMuch = function() {
-var lunchItems = $scope.lunchItems;
-console.log("Lunch Items :" +lunchItems);
-   if (lunchItems.length > 0) {
-     $scope.message = "Lunch Items found" ;
-   } else {
-     $scope.message = "Lunch Items Cannot be empty" ;
-   }
-}
-}
-
-
+    function LunchCheckController($scope) {
+        $scope.lunchItems = "";
+        $scope.message = "";
+        $scope.checkIfTooMuch = function() {
+            var lunchItems = $scope.lunchItems;
+            if (lunchItems.length > 0) {
+                var count = 0;
+                var lunchArr = lunchItems.split(",");
+                if (lunchArr.length > 4) {
+                  $scope.message = "Too much!"
+                } else {
+                    $scope.message = "Enjoy!"
+                }
+            } else {
+              $scope.message = "Ooops...Lunch Items cannot be empty!";
+            }
+        };
+    }
 })();
