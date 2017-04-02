@@ -10,6 +10,7 @@ $scope.message = "";
 $scope.lunchItems = "";
 $scope.checkIfTooMuch = function() {
 var lunchItems = $scope.lunchItems;
+console.log("Lunch Items :" +lunchItems);
    if (lunchItems.length > 0) {
      $scope.message = "Lunch Items found" ;
    } else {
